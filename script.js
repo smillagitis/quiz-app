@@ -9,6 +9,8 @@ var correctAnswer = '';
 var answers = incorrectAnswers.slice();
 startButton.addEventListener('click', startQuiz)
 
+//some comments
+
 function startQuiz() {
     quiz.style.display = "block";
     startScreen.style.display = "none";
@@ -21,7 +23,7 @@ async function getQuizData() {
     } catch (error) {
         console.log(error);
     }
-    
+
 }
 
 async function renderQuiz() {
@@ -32,12 +34,12 @@ async function renderQuiz() {
     incorrectAnswers.push(correctAnswer);
     let answers = incorrectAnswers.slice();
     var more = document.querySelector('.answers')
-  for (var i = 0; i < answers.length; i++) {
-    var butt=document.createElement("button");
-    butt.innerHTML=answers[i];
-    butt.classList.add('answer')
-    more.appendChild(butt);
-  }
+    for (var i = 0; i < answers.length; i++) {
+        var butt = document.createElement("button");
+        butt.innerHTML = answers[i];
+        butt.classList.add('answer')
+        more.appendChild(butt);
+    }
 }
 
 renderQuiz();
