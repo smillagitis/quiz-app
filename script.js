@@ -4,10 +4,10 @@ const startScreen = document.querySelector('.start-screen')
 const questionField = document.querySelector('.question')
 const answersField = document.querySelector('.answers')
 const API_URL = "https://opentdb.com/api.php?amount=15&category=15&difficulty=easy&type=multiple"
-let answerButtons;
 let incorrectAnswers = [];
 let correctAnswer = '';
-let answers = incorrectAnswers.slice();
+let currentQuestionIndex = 0;
+let rightAnswersCount;
 startButton.addEventListener('click', startQuiz)
 
 function startQuiz() {
