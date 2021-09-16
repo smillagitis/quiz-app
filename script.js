@@ -2,11 +2,12 @@ const startButton = document.querySelector('.start-button')
 const quiz = document.querySelector('.quiz')
 const startScreen = document.querySelector('.start-screen')
 const questionField = document.querySelector('.question')
+const answersField = document.querySelector('.answers')
 const API_URL = "https://opentdb.com/api.php?amount=15&category=15&difficulty=easy&type=multiple"
-var answerButtons;
-var incorrectAnswers = [];
-var correctAnswer = '';
-var answers = incorrectAnswers.slice();
+let answerButtons;
+let incorrectAnswers = [];
+let correctAnswer = '';
+let answers = incorrectAnswers.slice();
 startButton.addEventListener('click', startQuiz)
 
 function startQuiz() {
@@ -26,22 +27,30 @@ async function getQuizData() {
 
 async function renderQuiz() {
     let quizData = await getQuizData();
-    questionField.innerHTML = quizData.results[0].question;
-    incorrectAnswers = quizData.results[0].incorrect_answers;
-    let correctAnswer = quizData.results[0].correct_answer;
+    quizData = quizData.results;
+    renderQuestion(quizData, 0, questionField);
+    let answers = createAnswersArray(quizData, 0);
+    renderAnswers(answers, answersField);
+}
+
+
+function createAnswersArray(data, index) {
+    incorrectAnswers = data[index].incorrect_answers;
+    correctAnswer = data[index].correct_answer;
     incorrectAnswers.push(correctAnswer);
-    let answers = incorrectAnswers.slice();
-    var more = document.querySelector('.answers')
-  for (var i = 0; i < answers.length; i++) {
-    var butt=document.createElement("button");
-    butt.innerHTML=answers[i];
-    butt.classList.add('answer')
-    more.appendChild(butt);
-  }
+    return incorrectAnswers;
+}
+function renderQuestion(data, index, field) {
+    field.innerHTML = data[index].question;
+}
+
+function renderAnswers(answersArray, field) {
+    for (let i = 0; i < answersArray.length; i++) {
+        let buttons=document.createElement("button");
+        buttons.innerHTML=answersArray[i];
+        buttons.classList.add('answer')
+        field.appendChild(buttons);
+      }
 }
 
 renderQuiz();
-answerButtons = document.querySelector('.answer');
-// answerButtons.forEach(el => el.addEventListener('click', event => {
-//     console.log(event.target);
-//   }));
