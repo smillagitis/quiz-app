@@ -24,4 +24,11 @@ body {
     background-color: brown;
     display: none;
 } 
-
+.results-screen {
+    width:50vw;
+    height: 50vh;
+    color: azure;
+    background-color: black;
+    display: none;
+    text-align: center;
+}
