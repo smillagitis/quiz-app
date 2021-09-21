@@ -7,12 +7,14 @@ const restartButton = document.querySelector('.restart')
 const resultsText = document.querySelector('.results-text')
 //const nextButton = document.querySelector('#next-button')
 const resultsScreen = document.querySelector('.results-screen')
-const API_URL = "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple"
+const difficulty = "easy";
+const questionsAmount = 10;
+const API_URL = `https://opentdb.com/api.php?amount=${questionsAmount}&category=15&difficulty=${difficulty}&type=multiple`
 let correctAnswer;
 let currentQuestionIndex = 0;
 let rightAnswersCount = 0; 
-startButton.addEventListener('click', startQuiz)
-restartButton.addEventListener('click', restartQuiz)
+startButton.addEventListener('click', startQuiz);
+restartButton.addEventListener('click', restartQuiz);
 //nextButton.addEventListener('click', getNextQuestion)
 
 function startQuiz() {
