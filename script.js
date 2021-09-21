@@ -10,7 +10,7 @@ const resultsScreen = document.querySelector('.results-screen')
 const API_URL = "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple"
 let correctAnswer;
 let currentQuestionIndex = 0;
-let rightAnswersCount = 0;
+let rightAnswersCount = 0; 
 startButton.addEventListener('click', startQuiz)
 restartButton.addEventListener('click', restartQuiz)
 //nextButton.addEventListener('click', getNextQuestion)
