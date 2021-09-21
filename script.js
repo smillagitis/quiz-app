@@ -3,6 +3,8 @@ const quiz = document.querySelector('.quiz')
 const startScreen = document.querySelector('.start-screen')
 const questionField = document.querySelector('.question')
 const answersField = document.querySelector('.answers')
+const restartButton = document.querySelector('.restart')
+const resultsText = document.querySelector('.results-text')
 //const nextButton = document.querySelector('#next-button')
 const resultsScreen = document.querySelector('.results-screen')
 const API_URL = "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple"
@@ -10,6 +12,7 @@ let correctAnswer;
 let currentQuestionIndex = 0;
 let rightAnswersCount = 0;
 startButton.addEventListener('click', startQuiz)
+restartButton.addEventListener('click', restartQuiz)
 //nextButton.addEventListener('click', getNextQuestion)
 
 function startQuiz() {
@@ -67,7 +70,10 @@ function renderAnswers(answersArray, field) {
     for (let i = 0; i < answersArray.length; i++) {
         let buttons=document.createElement("button");
         buttons.innerHTML=answersArray[i];
-        buttons.classList.add('answer')
+        buttons.classList.add('answer');
+        buttons.classList.add('btn');
+        buttons.classList.add('btn-secondary');
+        
         field.appendChild(buttons);
         buttons.addEventListener('click', checkAnswer)
       }
@@ -75,18 +81,19 @@ function renderAnswers(answersArray, field) {
 async function getNextQuestion() {
     let quizData = await getQuizData();
     quizData = quizData.results;
-    if (currentQuestionIndex >= quizData.length) {
+    if (currentQuestionIndex+1 >= quizData.length) {
         quiz.style.display = "none";
-        resultsScreen.style.display = "block";
-        resultsScreen.innerHTML = `Nice! Your got ${rightAnswersCount} of the ${quizData.length} questions right.`;
+        resultsScreen.style.display = "flex";
+        resultsText.innerText = `Nice! Your got ${rightAnswersCount} of the ${quizData.length} questions right.`;
     } else {
     correctAnswer = quizData[currentQuestionIndex].correct_answer;
     answersField.innerHTML = "";
     renderQuestion(quizData, currentQuestionIndex, questionField);
     let answers = createAnswersArray(quizData, currentQuestionIndex);
     renderAnswers(answers, answersField);
-    }
     currentQuestionIndex++;
+    }
+    
 }
 
 function checkAnswer(){
@@ -98,6 +105,10 @@ function checkAnswer(){
         this.style.background = 'red';
         getNextQuestion();
     }
+}
+
+function restartQuiz() {
+    location.reload(); 
 }
 
 renderQuiz();

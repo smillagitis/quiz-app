@@ -21,8 +21,12 @@ body {
 .quiz {
     width:50vw;
     height: 50vh;
-    background-color: brown;
+    background-color: rgb(184, 73, 0);
     display: none;
+    border-radius: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 } 
 .results-screen {
     width:50vw;
@@ -31,4 +35,26 @@ body {
     background-color: black;
     display: none;
     text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.answer {
+    margin: 5px;
+}
+
+.question {
+    background-color: rgb(252, 136, 27);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.results-text {
+    color: cornsilk;
+}
+
+.restart {
+    margin: 10px;
 }
