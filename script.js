@@ -11,7 +11,7 @@ const difficulty = "easy";
 const questionsAmount = 10;
 const API_URL = `https://opentdb.com/api.php?amount=${questionsAmount}&category=15&difficulty=${difficulty}&type=multiple`
 let correctAnswer;
-let currentQuestionIndex = 0;
+let currentQuestionIndex = 0; 
 let rightAnswersCount = 0; 
 startButton.addEventListener('click', startQuiz);
 restartButton.addEventListener('click', restartQuiz);
