@@ -10,12 +10,18 @@
 </head>
 <body>
     <div class="start-screen">
+        <div class="difficulty-options">
         <label for="difficulty">Choose difficulty:</label>
-        <select name="difficulty" id="difficulty">
+        <select name="difficulty" id="difficulty" class="form-select">
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
         </select>
+        </div>
+        <div class="trivia-amount">
+        <label for="amount">Choose trivia amount:</label>
+        <input type="number" min="1" max="50" value="10" id="amount">
+        </div>
     <button type="button" class="btn btn-primary start-button">START QUIZ</button>
 </div>
 <div class="quiz"> 

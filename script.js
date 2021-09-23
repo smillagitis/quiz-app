@@ -7,8 +7,8 @@ const restartButton = document.querySelector('.restart')
 const resultsText = document.querySelector('.results-text')
 //const nextButton = document.querySelector('#next-button')
 const resultsScreen = document.querySelector('.results-screen')
-let difficulty = 'easy';
-const questionsAmount = 3;
+//let difficulty = 'easy';
+//let questionsAmount = 3;
 let correctAnswer;
 let currentQuestionIndex = 0; 
 let rightAnswersCount = 0; 
@@ -27,10 +27,16 @@ function chooseDifficulty() {
     return chosenDifficulty;
 }
 
+function getQuestionsAmount() {
+    const amount = document.getElementById('amount');
+    return amount.value;
+}
+
 
 async function getQuizData() {
     try {
-        difficulty = chooseDifficulty();
+        let difficulty = chooseDifficulty();
+        let questionsAmount = getQuestionsAmount();
         const API_URL = `https://opentdb.com/api.php?amount=${questionsAmount}&category=15&difficulty=${difficulty}&type=multiple`
         let response = await fetch(API_URL);
         return await response.json();
@@ -118,7 +124,7 @@ function checkAnswer(){
 }
 
 function restartQuiz() {
-    location.reload(); 
+    location.reload(true); 
 }
 
 renderQuiz();
