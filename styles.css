@@ -58,3 +58,7 @@ body {
 .restart {
     margin: 10px;
 }
+
+#difficulty {
+    margin: 30px;
+}
